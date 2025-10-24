@@ -6,9 +6,26 @@
 # @File     :   OUT.py
 # @Desc     :   
 
-def main() -> None:
-    """ Main Function """
-    pass
+from dataclasses import dataclass
 
-if __name__ == "__main__":
-    main()
+
+@dataclass
+class Outputter:
+    """ Print Class with ON/OFF switch """
+    _enabled: bool = True
+
+    def yes(self):
+        """ Open output """
+        self._enabled = True
+
+    def no(self):
+        """ Close output """
+        self._enabled = False
+
+    def print(self, msg: str) -> None:
+        """ Display the message if switch is on """
+        if self._enabled:
+            print(msg)
+
+
+out = Outputter()
