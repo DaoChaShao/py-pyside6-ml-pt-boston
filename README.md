@@ -5,14 +5,20 @@
 
 **INTRODUCTION**
 ---
-This project demonstrates the complete process of **building and training a Recurrent Neural Network (RNN) using
-PyTorch**, combined with **PySide6** to create an interactive graphical interface for visualizing model training and
-prediction results. The project also integrates **jieba** or **THULAC**, two popular Chinese word segmentation tools,
-for text preprocessing and sequence modeling tasks.
+This project implements a **House Price Prediction System** built with **PyTorch** and **PySide6**, using the classic
+**Boston Housing Dataset** for training and evaluation.
+It combines machine learning model training with a user-friendly graphical interface for visualization and interaction.
 
-By combining algorithm implementation with visual interaction, this project helps learners build a complete
-understanding of the RNN workflow — from **data preprocessing** to **model training** and **visual output**, enabling
-both conceptual and practical mastery of sequence modeling.
+**FEATURES**
+---
+
++ Data loading and preprocessing (normalization, feature selection, etc.)
++ Train and evaluate a neural network (MLP or RNN) for regression tasks
++ Real-time visualization of training loss and prediction results
++ Interactive GUI built with PySide6 for manual input and prediction
+
+The project aims to provide a hands-on example of deep learning workflow integration — from data preparation and model
+training to result visualization and deployment with GUI.
 
 **PRIVACY NOTICE**
 ---
