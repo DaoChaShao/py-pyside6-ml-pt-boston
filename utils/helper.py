@@ -9,6 +9,7 @@
 from json import load, dump
 from random import seed as rnd_seed, getstate, setstate
 from pathlib import Path
+from pandas import DataFrame, read_csv
 from time import perf_counter
 
 from utils.decorator import timer
@@ -130,6 +131,24 @@ def read_file(file_path: str | Path) -> str:
         content = file.read()
         print(f"The content:\n{content}")
     return content
+
+
+@timer
+def load_text_data(text_data_path: str, cols: bool = False, columns: list | None = None) -> DataFrame:
+    """ Read data from a txt file with a structural data format
+    :param text_data_path: path to the text data file
+    :param cols: whether to specify column names
+    :param columns: list of column names
+    :return: data read from the text file
+    """
+    if cols:
+        data: DataFrame = read_csv(text_data_path, names=columns, sep=r"\s+")
+    else:
+        data: DataFrame = read_csv(text_data_path, sep=r"\s+")
+
+    print(f"Loaded text data' shape is {data.shape}.")
+
+    return data
 
 
 @timer
