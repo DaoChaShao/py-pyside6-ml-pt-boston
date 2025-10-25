@@ -6,6 +6,7 @@
 # @File     :   trainer.py
 # @Desc     :   
 
+from PySide6.QtCore import QObject, Signal
 from torch import nn, no_grad, save, device, abs as torch_abs
 from torch.utils.data import DataLoader
 from tqdm import tqdm
@@ -13,8 +14,9 @@ from tqdm import tqdm
 from utils.PT import get_device, TorchDataLoader
 
 
-class TorchTrainer:
+class TorchTrainer(QObject):
     """ Trainer class for managing training process """
+    processor: Signal = Signal(int, float, float)
 
     def __init__(self, model: nn.Module, optimiser, criterion, accelerator: str = "auto"):
         super().__init__()
@@ -107,6 +109,9 @@ class TorchTrainer:
         for epoch in tqdm(range(epochs), desc="Training Progress", unit="epoches"):
             train_loss = self._epoch_train(train_loader)
             valid_loss, mae = self._epoch_valid(valid_loader)
+
+            # Emit signal for each epoch
+            self.processor.emit(epoch + 1, train_loss, valid_loss)
 
             # self._train_losses.append(train_loss)
             # self._valid_losses.append(valid_loss)
