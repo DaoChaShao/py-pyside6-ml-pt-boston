@@ -171,7 +171,8 @@ def split_data(
 
 
 @timer
-def pca_importance(data: DataFrame, threshold: float = 0.95, top_n: int = None):
+def select_pca_importance(data: DataFrame, threshold: float = 0.95, top_n: int = None) -> tuple[
+    list[str], PCA, DataFrame]:
     """ Calculate PCA feature importance
     :param data: the DataFrame containing the selected features for training
     :param threshold: the cumulative variance ratio threshold to consider
@@ -196,20 +197,20 @@ def pca_importance(data: DataFrame, threshold: float = 0.95, top_n: int = None):
 
     # Calculate the absolute contribution of each feature to the selected components
     ratios["Contribution"] = ratios.iloc[:, :n_components].abs().sum(axis=1)
-
     # Sort features by their contribution
     ratios: DataFrame = ratios.sort_values("Contribution", ascending=False)
     # print(ratios)
 
     # Extract important features
-    important_features: list[float] = ratios.index.tolist()
     if top_n is not None:
-        important_features = important_features[:top_n]
+        important_features = ratios.index[:top_n].tolist()
+    else:
+        important_features = ratios.index[:n_components].tolist()
 
     print(f"Features meet the threshold of {threshold * 100:.1f}% cumulative variance: {n_components}")
-    print("All(Top 10) Important Features:")
-    pprint(important_features[:10] if top_n is None else important_features)
-    print(f"All((Top 10)) Cum Var Ratio:")
-    pprint(cumulative_variance[:10] if top_n is None else cumulative_variance)
+    print("Important Features:")
+    pprint(important_features)
+    print("Contribution of these features:")
+    pprint(ratios.loc[important_features, "Contribution"].values)
 
     return important_features, model, ratios
