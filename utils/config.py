@@ -21,10 +21,10 @@ class FilePaths:
 
 @dataclass
 class DataPreprocessor:
+    PCA_VARIANCE_THRESHOLD: float = 0.95
     RANDOM_STATE: int = 27
     VALID_SIZE: float = 0.2
     IS_SHUFFLE: bool = True
-    PCA_VARIANCE_THRESHOLD: float = 0.95
     BATCH_SIZE: int = 32
 
 
@@ -42,8 +42,7 @@ class ModelParameters:
 @dataclass
 class Hyperparameters:
     ALPHA: float = 1e-3
-    ALPHA_REDUCTION: float = 0.3
-    EPOCHS: int = 20
+    EPOCHS: int = 100
     ACCELERATOR: str = "cuda" if cuda.is_available() else "cpu"
 
 
