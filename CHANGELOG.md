@@ -5,6 +5,9 @@
 
 ### Features
 
+- integrate signal emission for training progress updates in TorchTrainer ([f209c40](https://github.com///commit/f209c403f0c1cede770d033a53a7a8497b9cb314))
+- add a GUI for displaying Boston housing prices in a table format ([62a44a9](https://github.com///commit/62a44a916ad8015f47733d387cb5142e9413f6f8))
+- add a GUI for visualizing training and test losses during model training ([2ffa6e8](https://github.com///commit/2ffa6e8ed1cb6d313b9d2f3efce7194798adcd31))
 - save and add a linear regression model for predicting ([92b96bc](https://github.com///commit/92b96bcbd5181958be2972cca4dd8c1920253f4d))
 - add torchsummary and tqdm packages to enhance model summary and progress tracking ([3ef9004](https://github.com///commit/3ef900406ad3b5f1709334da14da234367c0d7b0))
 - enhance validation process with MAE calculation and progress tracking ([27273f7](https://github.com///commit/27273f791ed4776bea9798ff9b39fcd591b8dc07))
@@ -35,6 +38,7 @@
 
 ### Chore
 
+- update CHANGELOG.md to document recent features, bug fixes, and refactoring ([4b35051](https://github.com///commit/4b35051e996269ab516bea411a593fc5c1fb1217))
 - add CHANGELOG.md to document project milestones and updates ([009ce73](https://github.com///commit/009ce73bdf7f893c65b80094224a4f0f75c8aba6))
 - add newline at end of file and ensure main function is called ([8db1de3](https://github.com///commit/8db1de3ab10998acf7aa3bf18543ba9e5c5cb563))
 
@@ -45,5 +49,7 @@
 
 ### Code Refactoring
 
+- train and add a reasonable linear regression model for boston house prices prediction ([e031948](https://github.com///commit/e031948966a164aac8839fea00cc414b490bad74))
+- remove unused imports from main.py to clean up code ([bb0bf01](https://github.com///commit/bb0bf0134dc1f03052b6233eedab724bcfe29827))
 - rename PCA importance function and improve feature selection logic ([9bc447e](https://github.com///commit/9bc447ec556a9242ea5dd2848f617d68dd88ac6b))
 
