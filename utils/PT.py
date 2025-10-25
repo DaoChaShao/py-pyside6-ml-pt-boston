@@ -234,7 +234,7 @@ class LabelTorchDataset(Dataset):
         :param labels: the label tensor
         """
         self._features: Tensor = self._to_tensor(features)
-        self._labels: Tensor = self._to_tensor(labels, is_label=True)
+        self._labels: Tensor = self._to_tensor(labels)
 
     @property
     def features(self) -> Tensor:
@@ -254,13 +254,13 @@ class LabelTorchDataset(Dataset):
         :return: the converted PyTorch tensor
         """
         if isinstance(data, (DataFrame, Series)):
-            out = tensor(data.values, dtype=int64 if is_label else float32)
+            out = tensor(data.values, dtype=float32 if not is_label else int64)
         elif isinstance(data, Tensor):
-            out = data.long() if is_label else data.float()
+            out = data.float() if not is_label else data.long()
         elif isinstance(data, (ndarray, list)):
-            out = tensor(data, dtype=int64 if is_label else float32)
+            out = tensor(data, dtype=float32 if not is_label else int64)
         elif isinstance(data, GrayTensorReshaper):
-            out = data().long() if is_label else data().float()
+            out = data().float()
         else:
             raise TypeError(f"Unsupported data type: {type(data)}")
 
